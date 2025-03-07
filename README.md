@@ -73,3 +73,75 @@ compute_salary_deductions(salary)
 
 Key Takeaways:
 Renamed variables for clarity (e.g., sss → social_security_system), improved formatting and indentation, added docstrings, and formatted numerical output for better readability.
+
+Convert to modular functions 
+def compute_sss():
+    return 1200
+
+
+def compute_philhealth(salary):
+    return (salary * 0.05) / 2
+
+
+def compute_pagibig():
+    return 100
+
+
+def compute_tax():
+    return 1875  # Assuming fixed value for simplicity
+
+
+def compute_total_deductions(salary):
+    sss = compute_sss()
+    philhealth = compute_philhealth(salary)
+    pagibig = compute_pagibig()
+    tax = compute_tax()
+    return sss + philhealth + pagibig + tax, sss, philhealth, pagibig, tax
+
+
+def compute_net_salary(salary):
+    total_deductions, sss, philhealth, pagibig, tax = compute_total_deductions(salary)
+    net_salary = salary - total_deductions
+   
+    print("Gross Salary:", salary)
+    print("SSS Deduction:", sss)
+    print("PhilHealth Deduction:", philhealth)
+    print("Pag-IBIG Deduction:", pagibig)
+    print("Tax Deduction:", tax)
+    print("Total Deductions:", total_deductions)
+    print("Net Salary:", net_salary)
+
+
+salary = float(input("Enter your monthly salary: "))
+compute_net_salary(salary)
+Key Takeaways:
+roke down the large function into reusable functions (compute_sss(), compute_tax(), etc.), reducing code duplication and making the program easier to maintain and modify.
+
+Implement OOP 
+class SalaryCalculator:
+    def __init__(self, salary):
+        self.salary = salary
+        self.sss = 1200
+        self.philhealth = (salary * 0.05) / 2
+        self.pagibig = 100
+        self.tax = 1875  # Assuming fixed value for simplicity
+        self.deductions = self.sss + self.philhealth + self.pagibig + self.tax
+        self.net_salary = self.salary - self.deductions
+
+
+    def display_deductions(self):
+        print("Gross Salary:", self.salary)
+        print("SSS Deduction:", self.sss)
+        print("PhilHealth Deduction:", self.philhealth)
+        print("Pag-IBIG Deduction:", self.pagibig)
+        print("Tax Deduction:", self.tax)
+        print("Total Deductions:", self.deductions)
+        print("Net Salary:", self.net_salary)
+
+
+if _name_ == "_main_":
+    salary = float(input("Enter your monthly salary: "))
+    calculator = SalaryCalculator(salary)
+    calculator.display_deductions()
+Key Takeaways:
+Encapsulated logic into a SalaryCalculator class, using __init__() to store salary and deductions, and display_deductions() to improve structure, scalability, and reusability.
